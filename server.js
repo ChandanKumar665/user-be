@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const dotenv = require('dotenv')
+
 const bodyParser = require('body-parser')
 const path = require('path')
 const http = require('http')
@@ -18,8 +20,11 @@ app.use(cookieParser())
 
 // step 1
 const PORT = process.env.PORT || 4000
+// db config
+const devDB = require('./config/keys')
 
-// app.use('/api/v1/transaction', auth, routes.transaction)
+const user = require('./route/api/v1/user')
+app.use('/api/v1/user', user)
 
 mongoose
   .connect(process.env.MONGODB_URI || devDB.mongoURI, {
