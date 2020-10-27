@@ -2,10 +2,21 @@ const express = require('express')
 const router = express.Router()
 const User = require('../../../models/User')
 
+const validateEmail = (email, cb) => {
+  User.findOne({ email: email })
+    .then(doc => {
+      if (doc) {
+        cb(true)
+      } else {
+        cb(false)
+      }
+    })
+    .catch(err => cb(false))
+}
 // POST resigter user
 router.post('', async (req, res) => {
-  const { firstname, lastname, email, pass, gender } = req.body
-  if (!firstname || !lastname || !email || !pass || !gender) {
+  const { firstName, lastName, email, pass, gender } = req.body
+  if (!firstName || !lastName || !email || !pass || !gender) {
     res.status(400).json({
       success: false,
       msg: 'fields are missing.',
@@ -15,22 +26,33 @@ router.post('', async (req, res) => {
     let data = {
       email: email,
       pwd: pass,
-      firstName: firstname,
-      lastName: lastname,
+      firstName: firstName,
+      lastName: lastName,
       gender: gender
     }
-    User.insertMany([data], (insertErr, doc) => {
-      if (insertErr) {
-        res.status(500).json({
-          success: false,
-          msg: 'Server Error',
-          statusCode: 500
+    validateEmail(email, found => {
+      if (!found) {
+        User.insertMany([data], (insertErr, doc) => {
+          if (insertErr) {
+            console.log(insertErr)
+            res.status(500).json({
+              success: false,
+              msg: 'Server Error',
+              statusCode: 500
+            })
+          } else {
+            res.status(201).json({
+              success: true,
+              msg: 'Registration successfull',
+              statusCode: 201
+            })
+          }
         })
       } else {
-        res.status(201).json({
-          success: true,
-          msg: 'Registration successfull',
-          statusCode: 201
+        res.status(400).json({
+          success: false,
+          msg: 'Email already exists',
+          statusCode: 400
         })
       }
     })
@@ -38,8 +60,8 @@ router.post('', async (req, res) => {
 })
 
 // GET user/:id
-router.get('/:userid', async (req, res) => {
-  const { userid } = req.params.userid
+router.get('/:id', async (req, res) => {
+  const userid = req.params.id
   if (!userid) {
     res.status(400).json({
       success: false,

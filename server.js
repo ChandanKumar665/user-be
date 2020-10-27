@@ -16,7 +16,6 @@ dotenv.config()
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.json({ limit: '10kb' })) // Body limit is 10
-app.use(cookieParser())
 
 // step 1
 const PORT = process.env.PORT || 4000
@@ -24,7 +23,10 @@ const PORT = process.env.PORT || 4000
 const devDB = require('./config/keys')
 
 const user = require('./route/api/v1/user')
+const login = require('./route/api/v1/login')
+
 app.use('/api/v1/user', user)
+app.use('/api/v1/login', login)
 
 mongoose
   .connect(process.env.MONGODB_URI || devDB.mongoURI, {
