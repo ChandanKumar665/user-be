@@ -10,7 +10,7 @@ const mongoose = require('mongoose')
 
 const server = http.createServer(app)
 
-// cors middleware
+// cors middleware.
 app.use(cors())
 dotenv.config()
 app.use(bodyParser.json())
