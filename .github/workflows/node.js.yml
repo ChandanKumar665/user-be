@@ -6,6 +6,8 @@ name: Node.js CI
 on:
   push:
     branches: [master]
+env:
+  DB_STRING: ${{ secrets.DB_STRING }}
 
 jobs:
   build:
@@ -24,5 +26,3 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: pm2 restart server
-        env:
-          DB_STRING: ${{ secrets.DB_STRING }}
