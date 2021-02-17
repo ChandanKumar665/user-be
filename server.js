@@ -36,7 +36,10 @@ mongoose
   .then(() => {
     console.log('connected to mongodb')
   })
-  .catch(err => console.log(err))
+  .catch(err => {
+    console.log('Mongo Error')
+    console.log(err)
+  })
 
 // serve static assets if it's in production
 // set static folder
