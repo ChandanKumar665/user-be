@@ -37,7 +37,7 @@ mongoose
     console.log('connected to mongodb')
   })
   .catch(err => {
-    console.log('Mongo Error')
+    console.log('Mongo Err')
     console.log(err)
   })
 
