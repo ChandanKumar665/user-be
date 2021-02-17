@@ -24,5 +24,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
         env:
           DB_STRING: ${{ secrets.DB_STRING }}
+        run: echo $DB_STRING
       - run: npm install
       - run: pm2 restart server
