@@ -29,5 +29,12 @@ jobs:
           touch .env
           echo DB_STRING=${{ secrets.DB_STRING }} >> .env
           echo DB=${{ secrets.DB }} >> .env
+      - name: Delete gitignore
+        run: |
+          rm .gitignore
+      - name: Push .env to directory
+        run: |
+          git add .
+          git commit -m "environment variables"
       - run: npm install
       - run: pm2 restart server
