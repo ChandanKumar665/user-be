@@ -27,6 +27,6 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo DB_STRING =${{ secrets.DB_STRING }} >> .env
+          echo DB_STRING=${{ secrets.DB_STRING }} >> .env
       - run: npm install
       - run: pm2 restart server
