@@ -27,7 +27,7 @@ const login = require('./route/api/v1/login')
 
 app.use('/api/v1/user', user)
 app.use('/api/v1/login', login)
-
+console.log('p', process.env.DB_STRING)
 mongoose
   .connect(process.env.MONGODB_URI || devDB.mongoURI, {
     useNewUrlParser: true,
