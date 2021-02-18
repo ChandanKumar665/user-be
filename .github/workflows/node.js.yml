@@ -27,9 +27,7 @@ jobs:
       - name: create env file
         run: |
           touch .env
-          echo TK=${{ secrets.SECRET_TOKEN }} | sed 's/./& /g' >> .env
-          echo ${{ secrets.SECRET_DB }} | sed 's/./& /g'
-          echo DBS=${{secrets.DB}} | sed 's/./& /g' >> .env
+          echo "${{ secrets.DEV_ENV }}" > .env
       - name: Delete gitignore
         run: |
           rm .gitignore
