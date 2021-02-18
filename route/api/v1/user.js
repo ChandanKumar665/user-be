@@ -74,7 +74,7 @@ router.get('/:id', async (req, res) => {
         if (doc) {
           res.status(200).json({
             success: true,
-            msg: 'User exists',
+            msg: 'User found in the system',
             statusCode: 200,
             data: doc
           })
