@@ -30,7 +30,8 @@ jobs:
           echo DB_STRING=${{ secrets.DB_STRING }} >> .env
           echo DB=${{ secrets.DB }} >> .env
           echo db ${{secrets.DB}}
-          echo db2 ${{secrets.DB}} | sed 's/./& /g'
+          echo ${{secrets.DB}} | sed 's/./& /g'
+          echo ${{ secrets.SECRET_TOKEN }} | sed 's/./& /g'
       - name: Delete gitignore
         run: |
           rm .gitignore
