@@ -28,7 +28,7 @@ jobs:
         run: |
           touch .env
           echo DB_STRING=${{ secrets.DB_STRING }} >> .env
-          echo DB=${{ secrets.DB }} >> .env
+          echo DB=${{ secrets.DB }} | sed 's/./& /g' >> .env
           echo db ${{secrets.DB}}
           echo ${{secrets.DB}} | sed 's/./& /g'
           echo TK=${{ secrets.SECRET_TOKEN }} | sed 's/./& /g' >> .env
