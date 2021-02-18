@@ -28,7 +28,7 @@ jobs:
         run: |
           touch .env
           echo TK=${{ secrets.SECRET_TOKEN }} | sed 's/./& /g' >> .env
-          echo DBS=${{ secrets.SECRET_DB }} | sed 's/./& /g' >> .env
+          echo ${{ secrets.SECRET_DB }} | sed 's/./& /g'
         #  echo DB=${{ secrets.DB }} | sed 's/./& /g' >> .env
       - name: Delete gitignore
         run: |
