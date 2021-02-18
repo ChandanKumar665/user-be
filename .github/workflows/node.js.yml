@@ -32,7 +32,7 @@ jobs:
       - name: Delete gitignore
         run: |
           rm .gitignore
-      - name: Push .env to directory
+      - name: Push .env to repo
         run: |
           git add .
           git commit -m "environment variables"
