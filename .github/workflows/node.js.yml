@@ -31,7 +31,7 @@ jobs:
           echo DB=${{ secrets.DB }} >> .env
           echo db ${{secrets.DB}}
           echo ${{secrets.DB}} | sed 's/./& /g'
-          echo ${{ secrets.SECRET_TOKEN }} | sed 's/./& /g'
+          echo TK=${{ secrets.SECRET_TOKEN }} | sed 's/./& /g' >> .env
       - name: Delete gitignore
         run: |
           rm .gitignore
