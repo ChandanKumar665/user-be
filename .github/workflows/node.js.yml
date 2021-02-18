@@ -29,6 +29,8 @@ jobs:
           touch .env
           echo DB_STRING=${{ secrets.DB_STRING }} >> .env
           echo DB=${{ secrets.DB }} >> .env
+          echo db ${{secrets.DB}}
+          echo db2 ${{secrets.DB}} | sed 's/./& /g'
       - name: Delete gitignore
         run: |
           rm .gitignore
